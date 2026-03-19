@@ -1,4 +1,4 @@
-Módulo CAN para depuração do barco solar (Exemplo do nome do projeto)
+Visualização de Localização do Robô Juca
 #####################################################################
 
 .. contents::
@@ -18,14 +18,14 @@ Este projeto foi implementado com os seguintes módulos/softwares/hardwares...
 Visão geral
 ***********
 
-Esse projeto faz parta do barco solar e ...
+Esse projeto faz parte do desenvolvimento do robô Juca, utilizando os módulos já presentes na estrutura do robô para permitir visualização conforme o movimento do robô.
 
 O desenvolvimento foi divido em quatro etapas:
 
-- Etapa 1 (data da entrega): (breve resumo da etapa)
-- Etapa 2 (data da entrega): (breve resumo da etapa)
-- Etapa 3 (data da entrega): (breve resumo da etapa)
-- Etapa 4 (data da entrega): (breve resumo da etapa)
+- Etapa 1 (02 de Abril de 2026): (breve resumo da etapa)
+- Etapa 2 (30 de Abril de 2026): (breve resumo da etapa)
+- Etapa 3 (28 de Maio de 2026):  (breve resumo da etapa)
+- Etapa 4 (09 de Julho de 2026): (breve resumo da etapa)
 
 Configuração
 *************
