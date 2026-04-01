@@ -56,9 +56,31 @@ Onde o ΔD é o comprimento do arco real, calculado pela média do deslocamento 
 
 Nesta implementação, o valor de Δθ é obtido diretamente da IMU (MPU6050), o que minimiza erros acumulados por derrapagem das rodas.
 
-(Outras subseções se necessário)
+Formato que pacotes de dados devem ser enviados para o computador
 ================================
 
+No Juca a comunicação será realizada via micro-ROS. O envio dos pacotes segue uma estrutura de tópicos padronizada.
+
+Estrutura de Dados: `nav_msgs/Odometry <https://docs.ros.org/en/noetic/api/nav_msgs/html/msg/Odometry.html>`_
+
+   Header: Contém o Timestamp (tempo de sistema) e o Frame ID (referencial).
+
+   Pose: Define a localização e orientação do robô no plano.
+
+      Point (x, y, z): Indica a posição no eixo cartesiano. Para o Juca, consideramos apenas os eixos x e y (movimento em 2D).
+
+      Quaternion (x, y, z, w): Representa a orientação. Os componentes x, y, z definem o eixo de rotação e a variável w indica a magnitude angular.
+
+   Twist: Define as velocidades instantâneas do robô.
+
+      Vector3 (Linear): Velocidade de translação no eixo x.
+      Vector3 (Angular): Velocidade de rotação (yaw rate) no eixo z.
+
+Graças ao processador interno (DMP - Digital Motion Processor) do MPU6050, o sensor já realiza a fusão de dados entre o acelerômetro e o giroscópio e nos entrega a orientação diretamente em Quaternions.
+
+
+(Outras subseções se necessário)
+================================
 
 Referências (links/datasheets/livros)
 *************************************
@@ -66,6 +88,8 @@ Referências (links/datasheets/livros)
 - `ROS 2 <https://www.ros.org/>`_
 - `micro-ROS <https://micro.ros.org/>`_
 - `ROS 2 - Instalação <https://docs.ros.org/en/kilted/Installation/Ubuntu-Install-Debs.html>`_
-
-
-
+- `nav_msgs/Odometry <https://docs.ros.org/en/noetic/api/nav_msgs/html/msg/Odometry.html>`_
+- `geometry_msgs/Pose Message <https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/Pose.html>`_
+- `geometry_msgs/Twist Message <https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/Twist.html>`_
+- `The ROS 2 Course <https://tom-howard.github.io/ros2/course/>`_
+- `Implementação de Controladores no ROS 2 <https://www.ece.ufrgs.br/~fetter/cca99006/ros2_controllers_dynlin.pdf>`_
