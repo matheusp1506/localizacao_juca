@@ -19,11 +19,15 @@ Apresentar o desenvolvimento da etapa contendo detalhes de implementação (se h
 
 Para a construção do projeto, primeiro deve-se entender o funcionamento dos sistemas utilizados, portanto pesquisas sobre o uso do ROS (Robot Operating System) foram realizadas, com tutoriais seguidos para a instalação em um computador próprio. Além da instalação inicial, houve estudos sobre a aplicação da biblioteca micro-ROS para permitir a comunicação com o microcontrolador.
 
+Tambem foi necessário o estudo sobre a odometria do robo, ou seja, como será feita a estimativa de posição dele, e consequentemente quais os tipos de dados que a comunicação do ROS utiliza para transmitir.
 
 Testes
 ======
 
 Para garantir a viabilidade do projeto, buscou-se já nesta etapa instalar e testar o ROS, no momento utilizando somente códigos de demonstração do mesmo. Seguindo o tutorial de instalação do ROS 2, foi instalada a versão mais recente, Kilted Kaiju, e então utilizada as demos de talker e listener.
+
+Modelo Cinemático e Estimativa de Posição 
+================================
 
 
 (Outras subseções se necessário)
