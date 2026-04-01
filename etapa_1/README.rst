@@ -74,6 +74,7 @@ Estrutura de Dados: `nav_msgs/Odometry <https://docs.ros.org/en/noetic/api/nav_m
    Twist: Define as velocidades instantâneas do robô.
 
       Vector3 (Linear): Velocidade de translação no eixo x.
+
       Vector3 (Angular): Velocidade de rotação (yaw rate) no eixo z.
 
 Graças ao processador interno (DMP - Digital Motion Processor) do MPU6050, o sensor já realiza a fusão de dados entre o acelerômetro e o giroscópio e nos entrega a orientação diretamente em Quaternions.
