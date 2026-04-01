@@ -29,6 +29,9 @@ Para garantir a viabilidade do projeto, buscou-se já nesta etapa instalar e tes
 Modelo Cinemático e Estimativa de Posição 
 ================================
 
+Como o Juca foi projetado com uma configuração de tração diferencial, a base da nossa estimativa de posição (odometria) segue o modelo cinemático clássico para esse tipo de configuração. A ideia é usar a variação do movimento das rodas, captada pelos encoders de quadratura, combinada com a leitura de angulo do giroscópio MPU6050.
+
+
 
 (Outras subseções se necessário)
 ================================
