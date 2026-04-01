@@ -17,7 +17,7 @@ Desenvolvimento
 
 Apresentar o desenvolvimento da etapa contendo detalhes de implementação (se houver) de hardware e software. Adicionar pesqusisas realizadas bem como testes realizados.
 
-Para a construção do projeto, primeiro deve-se entender o funcionamento dos sistemas utilizados, portanto pesquisas sobre o uso do ROS (Robot Operating System) foram realizadas, com tutoriais seguidos para a instalação em um computador próprio. Além da instalação inicial, houve estudos sobre a aplicação da biblioteca micro-ROS para permitir a comunicação com o microcontrolador.
+Para a construção do projeto, primeiro deve-se entender o funcionamento dos sistemas utilizados, portanto pesquisas sobre o uso do ROS (Robot Operating System) foram realizadas, com tutoriais seguidos para a instalação em um computador próprio. Além da instalação inicial, houve estudos sobre a comunicação com o microcontrolador. Para a comunicação o método escolhido foi a comunicação com MQTT para um broker, então um script em python realiza a conversão para o ROS, conjunto com a biblioteca mqtt-client.
 
 Tambem foi necessário o estudo sobre a odometria do robo, ou seja, como será feita a estimativa de posição dele, e consequentemente quais os tipos de dados que a comunicação do ROS utiliza para transmitir.
 
@@ -25,6 +25,13 @@ Testes
 ======
 
 Para garantir a viabilidade do projeto, buscou-se já nesta etapa instalar e testar o ROS, no momento utilizando somente códigos de demonstração do mesmo. Seguindo o tutorial de instalação do ROS 2, foi instalada a versão mais recente, Kilted Kaiju, e então utilizada as demos de talker e listener.
+
+Para validar a possibilidade de uso de MQTT foi feito um teste com código simulado para o envio até o broker. Os códigos de teste permitiram uma visualização básica no RViz.
+
+Visualização
+================================
+
+Para testes iniciais foi utilizada o RViz, porém planeja-se utilizar o Gazebo como maneira de ver o robô se movimentando, seguindo 
 
 Modelo Cinemático e Estimativa de Posição 
 ================================
