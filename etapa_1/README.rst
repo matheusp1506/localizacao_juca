@@ -96,8 +96,6 @@ Para validar a possibilidade de uso de MQTT foi feito um teste com código simul
 
 Caso deseje-se replicar os testes realizados, os passos podem ser seguidos conforme descrito na seção "Teste de visualização do RViz" em `Testes da Etapa 1 <Tests.rst>`_.
 
-(Outras subseções se necessário)
-================================
 
 Referências (links/datasheets/livros)
 *************************************
