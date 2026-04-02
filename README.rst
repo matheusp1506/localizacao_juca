@@ -12,7 +12,9 @@ Requisitos
 
 Este projeto foi implementado com os seguintes módulos/softwares/hardwares...
 
-- `XIAO nRF52840 <https://wiki.seeedstudio.com/XIAO_BLE/>`_
+- `ROS 2 <https://www.ros.org/>`_
+- `MQTT Client for ROS 2 <https://wiki.ros.org/mqtt_client>`_
+- `MQTT Broker <https://mosquitto.org/>`_
 
 
 Visão geral
@@ -22,13 +24,15 @@ Esse projeto faz parte do desenvolvimento do robô Juca, utilizando os módulos 
 
 O desenvolvimento foi divido em quatro etapas:
 
-- Etapa 1 (02 de Abril de 2026): (breve resumo da etapa)
+- Etapa 1 (02 de Abril de 2026): Estudos sobre o ROS, comunicação do microcontrolador, odometria e testes de visualização no RViz.
 - Etapa 2 (30 de Abril de 2026): (breve resumo da etapa)
 - Etapa 3 (28 de Maio de 2026):  (breve resumo da etapa)
 - Etapa 4 (09 de Julho de 2026): (breve resumo da etapa)
 
 Configuração
 *************
+
+Projeto ainda em estajo de desenvolvimento, informações abaixo são referentes à um modelo de estrutura para o GitHub e não são pertinentes ao projeto.
 
 Projeto foi implementado com o nRF OpenConnect SDK versão 2.4.x.
 Consulte `Configuring your application <https://developer.nordicsemi.com/nRF_Connect_SDK/doc/2.4.2/nrf/getting_started/modifying.html#configure-application>`_ para obter informações sobre como alterar a configuração permanente ou temporariamente.

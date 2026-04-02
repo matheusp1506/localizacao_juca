@@ -17,28 +17,29 @@ Desenvolvimento
 
 Apresentar o desenvolvimento da etapa contendo detalhes de implementação (se houver) de hardware e software. Adicionar pesqusisas realizadas bem como testes realizados.
 
-Para a construção do projeto, primeiro deve-se entender o funcionamento dos sistemas utilizados, portanto pesquisas sobre o uso do ROS (Robot Operating System) foram realizadas, com tutoriais seguidos para a instalação em um computador próprio. Além da instalação inicial, houve estudos sobre a comunicação com o microcontrolador. Para a comunicação o método escolhido foi a comunicação com MQTT para um broker, então um script em python realiza a conversão para o ROS, conjunto com a biblioteca mqtt-client.
+Para a construção do projeto, primeiro deve-se entender o funcionamento dos sistemas utilizados, portanto pesquisas sobre o uso do ROS (Robot Operating System) foram realizadas, com tutoriais seguidos para a instalação em um computador próprio.
+
+Para a comunicação o método escolhido foi a comunicação com MQTT para um broker, então um script em python realiza a conversão para o ROS, conjunto com a biblioteca mqtt-client.
 
 Tambem foi necessário o estudo sobre a odometria do robo, ou seja, como será feita a estimativa de posição dele, e consequentemente quais os tipos de dados que a comunicação do ROS utiliza para transmitir.
 
-Testes
-======
+Estudos sobre aplicação
+=======================
 
-Para garantir a viabilidade do projeto, buscou-se já nesta etapa instalar e testar o ROS, no momento utilizando somente códigos de demonstração do mesmo. Seguindo o tutorial de instalação do ROS 2, foi instalada a versão mais recente, Kilted Kaiju, e então utilizada as demos de talker e listener.
+Para compreensão do uso do ROS para a aplicação do projeto, houveram estudos de aplicações tanto de fusão de sensores, quanto de SLAM, que inclui também a função de mapeamento, não presente no escopo deste.
 
-Para validar a possibilidade de uso de MQTT foi feito um teste com código simulado para o envio até o broker. Os códigos de teste permitiram uma visualização básica no RViz.
+Exemplos de tutoriais, alguns apresentando somente áreas parciais são encontrados em:
 
-Visualização
-================================
-
-Para testes iniciais foi utilizada o RViz, porém planeja-se utilizar o Gazebo como maneira de ver o robô se movimentando, seguindo 
+- `Building the Cheapest ROS2 Robot using ESP32 <https://robofoundry.medium.com/building-cheapest-ros2-robot-using-esp32-part-1-hardware-build-af0044de68ce>`_
+- `Nav2 Documentation <https://docs.nav2.org/index.html>`_
+- `Sensor Fusion and Localization in ROS2: Understanding and Implementing the Extended Kalman Filter <https://medium.com/@shanmugaraja9919/sensor-fusion-and-localization-in-ros2-understanding-and-implementing-the-extended-kalman-filter-e4c861ddc1f2>`_
 
 Modelo Cinemático e Estimativa de Posição 
-================================
+=========================================
 
 Como o Juca foi projetado com uma configuração de tração diferencial, a base da nossa estimativa de posição (odometria) segue o modelo cinemático clássico para esse tipo de configuração. A ideia é usar a variação do movimento das rodas, captada pelos encoders de quadratura, combinada com a leitura de angulo do giroscópio MPU6050.
 
-.. figure:: modelo_tracao_diferencial.png
+.. figure:: images/modelo_tracao_diferencial.png
    :width: 450px
 
 Aqui nós temos como definir uma equaçao recursiva onde a posiçao atual é a soma da posiçao anterior com a variaçao gerada após o Δt, que no caso é o período de amostragem::
@@ -64,9 +65,9 @@ Onde o ΔD é o comprimento do arco real, calculado pela média do deslocamento 
 Nesta implementação, o valor de Δθ é obtido diretamente da IMU (MPU6050), o que minimiza erros acumulados por derrapagem das rodas.
 
 Formato que pacotes de dados devem ser enviados para o computador
-================================
+=================================================================
 
-No Juca a comunicação será realizada via micro-ROS. O envio dos pacotes segue uma estrutura de tópicos padronizada.
+O envio dos pacotes para o ROS segue uma estrutura de tópicos padronizada.
 
 Estrutura de Dados: `nav_msgs/Odometry <https://docs.ros.org/en/noetic/api/nav_msgs/html/msg/Odometry.html>`_
 
@@ -86,6 +87,14 @@ Estrutura de Dados: `nav_msgs/Odometry <https://docs.ros.org/en/noetic/api/nav_m
 
 Graças ao processador interno (DMP - Digital Motion Processor) do MPU6050, o sensor já realiza a fusão de dados entre o acelerômetro e o giroscópio e nos entrega a orientação diretamente em Quaternions.
 
+Testes
+======
+
+Para garantir a viabilidade do projeto, buscou-se já nesta etapa instalar e testar o ROS, no momento utilizando somente códigos de demonstração do mesmo. Seguindo o tutorial de instalação do ROS 2, foi instalada a versão mais recente, Kilted Kaiju, e então utilizada as demos de talker e listener.
+
+Para validar a possibilidade de uso de MQTT foi feito um teste com código simulado para o envio até o broker. Os códigos de teste permitiram uma visualização básica no RViz.
+
+Caso deseje-se replicar os testes realizados, os passos podem ser seguidos conforme descrito na seção "Teste de visualização do RViz" em `Testes da Etapa 1 <Tests.rst>`_.
 
 (Outras subseções se necessário)
 ================================
@@ -94,10 +103,13 @@ Referências (links/datasheets/livros)
 *************************************
 
 - `ROS 2 <https://www.ros.org/>`_
-- `micro-ROS <https://micro.ros.org/>`_
-- `ROS 2 - Instalação <https://docs.ros.org/en/kilted/Installation/Ubuntu-Install-Debs.html>`_
+- `ROS 2 Installation <https://docs.ros.org/en/kilted/Installation/Ubuntu-Install-Debs.html>`_
 - `nav_msgs/Odometry <https://docs.ros.org/en/noetic/api/nav_msgs/html/msg/Odometry.html>`_
 - `geometry_msgs/Pose Message <https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/Pose.html>`_
 - `geometry_msgs/Twist Message <https://docs.ros.org/en/noetic/api/geometry_msgs/html/msg/Twist.html>`_
 - `The ROS 2 Course <https://tom-howard.github.io/ros2/course/>`_
 - `Implementação de Controladores no ROS 2 <https://www.ece.ufrgs.br/~fetter/cca99006/ros2_controllers_dynlin.pdf>`_
+- `Building the Cheapest ROS2 Robot using ESP32 <https://robofoundry.medium.com/building-cheapest-ros2-robot-using-esp32-part-1-hardware-build-af0044de68ce>`_
+- `Nav2 Documentation <https://docs.nav2.org/index.html>`_
+- `Sensor Fusion and Localization in ROS2: Understanding and Implementing the Extended Kalman Filter <https://medium.com/@shanmugaraja9919/sensor-fusion-and-localization-in-ros2-understanding-and-implementing-the-extended-kalman-filter-e4c861ddc1f2>`_
+- `MQTT Client for ROS 2 <https://wiki.ros.org/mqtt_client>`_
