@@ -61,7 +61,7 @@
         
         socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
-            const quat = new THREE.Quaternion(data.y, data.x, data.z, data.w);
+            const quat = new THREE.Quaternion(data.y, data.z, data.x, data.w);
             robot.setRotationFromQuaternion(quat);
 
             // Update the Black Line (Axis of Rotation)
