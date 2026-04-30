@@ -8,6 +8,7 @@ O teste dos sensores utiliza o código encontrado na pasta codes/libraries. Este
 Este código apresenta a adição de bibliotecas, a modificação da biblioteca do MPU-6050, a página na forma de index.html e os códigos para conexão à internet e o uso de um webserver para a visualização do quaternion.
 
 Para utilizar o código, basta seguir os seguintes passos:
+
 #. Preparar o ambiente de desenvolvimento para o ESP32, com o uso da ESP-IDF v5.3.1.
 #. Clonar o repositório do projeto e acessar a pasta da etapa 2, etapa_2, e então acessar a pasta codes/libraries.
 #. Configurar as credenciais de Wi-Fi no arquivo ``wifi_manager.c``.
@@ -25,6 +26,7 @@ O código possui a leitura de ambos os sensores utilizando apenas uma task, port
 A task de cálculo da odometria é realizada logo após a leitura dos sensores, utilizando os dados obtidos para o cálculo da posição do robô, e então a task de envio é desbloqueada, enviando os dados para o broker MQTT e para a página de teste.
 
 Para utilizar o código, basta seguir os seguintes passos:
+
 #. Preparar o ambiente de desenvolvimento para o ESP32, com o uso da ESP-IDF v5.3.1.
 #. Clonar o repositório do projeto e acessar a pasta da etapa 2, etapa_2, e então acessar a pasta codes/position.
 #. Configurar as credenciais de Wi-Fi no arquivo ``wifi_manager.c``.
