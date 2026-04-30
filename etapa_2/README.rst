@@ -47,6 +47,8 @@ Estimativa de Posição
 
 Seguindo a estrutura pesquisada na primeira etapa, os dados obtidos do encoder e do giroscópio são utilizados para, com uma comparação de tempo, obter a variação de posição do robô, ou seja, a odometria.
 
+É necessário realizar testes mais robustos para avaliar a necessidade de implementação de filtros digitais para melhorar a estimativa de posição e diminuir o erro agregado aos sensores.
+
 Testes de Estimativas e MQTT
 ============================
 
@@ -62,7 +64,7 @@ O resultado obtido pode ser visto nas imagens abaixo, com a primeira apresentand
    :width: 450px
 
 .. figure:: images/SubscriptionResult.jpeg
-   :width: 450px
+   :width: 850px
 
 
 Referências (links/datasheets/livros)
