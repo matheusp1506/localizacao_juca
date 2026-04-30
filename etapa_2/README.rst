@@ -35,17 +35,32 @@ Testes das Bibliotecas
 O uso de bibliotecas novas, além de mudanças na biblioteca do MPU-6050, demanda novos testes que agora alcancem estas tarefas.
 
 O teste inicial foi uma modificação do projeto original do robô Juca, com a task do IMU o envio de dados para uma página funcionando na placa para a visualização do quaternion.
+A página de teste utiliza também a biblioteca do JavaScript `Three.js <https://threejs.org/>`_ para a visualização do quaternion, mostrando um modelo 3D simples que se orienta conforme o quaternion, podendo este ser visto na imagem abaixo.
+.. figure:: images/ThreeJSQuaternionView.jpeg
+   :width: 450px
 
 Para a comunicação com o MQTT, foi primeiro feito a forma inicial de fusão dos sensores.
 
 Estimativa de Posição
 =====================
 
+Seguindo a estrutura pesquisada na primeira etapa, os dados obtidos do encoder e do giroscópio são utilizados para, com uma comparação de tempo, obter a variação de posição do robô, ou seja, a odometria.
+
 Testes de Estimativas e MQTT
 ============================
 
-(Outras subseções se necessário)
-================================
+Para o teste de ambas a estimativa de posição e a comunicação via MQTT, foi construido três tasks diferentes, uma responsável por ler os dados de ambos os sensores, outra responsável por calcular a odometria e a última responsável por enviar os dados para o broker MQTT, e temporariamente para a página de teste, para a visualização do resultado.
+Esta estrutura utiliza queues para desbloquear as tasks seguintes, tendo o formato encontrado no gráfico abaixo.
+.. figure:: images/Tasks.png
+   :width: 450px
+
+O resultado obtido pode ser visto nas imagens abaixo, com a primeira apresentando os dados de uma estimativa de posição por meio da console, e a segunda apresentando os dados recebidos no broker MQTT, utilizando um cliente MQTT para se inscrever nos tópicos configurados e visualizar os dados recebidos, como a estimativa de posição.
+
+.. figure:: images/PublishingData.jpeg
+   :width: 450px
+
+.. figure:: images/SubscriptionResult.jpeg
+   :width: 450px
 
 
 Referências (links/datasheets/livros)
@@ -55,4 +70,5 @@ Referências (links/datasheets/livros)
 - `I2C Device Library <https://github.com/jrowberg/i2cdevlib>`_
 - `ESP-MQTT <https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/protocols/mqtt.html>`_
 - `Espressif: Wi-Fi <https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/network/esp_wifi.html>`_
+- `Three.js <https://threejs.org/>`_
 

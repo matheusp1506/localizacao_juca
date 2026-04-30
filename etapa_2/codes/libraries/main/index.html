@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Juca style visualizer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>body { margin: 0; overflow: hidden; background: #EEEEEE; }</style>
+</head>
+<body>
+    <div id="info" style="position:absolute; color:#333333; padding:10px; font-family:monospace;">Connecting...</div>
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({antialias: true});
+        renderer.setClearColor(0xEEEEEE); // Light grey background like reference
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // --- VISUAL HELPERS (THE CORE STYLE) ---
+
+        // 1. The floor grid (Size 10, divisions 10)
+        const gridHelper = new THREE.GridHelper(10, 10, 0xCCCCCC, 0xCCCCCC);
+        scene.add(gridHelper);
+
+        // 2. The main Axes (Size 5, R=X, G=Y, B=Z)
+        const axesHelper = new THREE.AxesHelper(5);
+        scene.add(axesHelper);
+
+        // --- ROBOT MODEL (Styled like reference) ---
+        
+        // Instead of Phong, we use basic material with wireframe = false for that clean look
+        const geometry = new THREE.BoxGeometry(4, 0.5, 3);
+        const materials = [
+            new THREE.MeshBasicMaterial({color: 0xff0000}), // +X (Red)
+            new THREE.MeshBasicMaterial({color: 0x880000}), // -X
+            new THREE.MeshBasicMaterial({color: 0x0000ff}), // +Z (Blue - Top)
+            new THREE.MeshBasicMaterial({color: 0x000088}), // -Z
+            new THREE.MeshBasicMaterial({color: 0x00ff00}), // +Y (Green)
+            new THREE.MeshBasicMaterial({color: 0x008800})  // -Y
+        ];
+        const robot = new THREE.Mesh(geometry, materials);
+        scene.add(robot);
+
+        // (We don't need lights with MeshBasicMaterial)
+
+        // --- THE "VECTOR OF ROTATION" LINE (THE BLACK LINE) ---
+        const lineGeometry = new THREE.BufferGeometry();
+        // Create a buffer for 2 points (origin and tip), each with 3 coordinates (x, y, z)
+        const positions = new Float32Array(2 * 3); 
+        lineGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 2 });
+        const rotationVector = new THREE.Line(lineGeometry, lineMaterial);
+        scene.add(rotationVector);
+
+        // --- CAMERA SETTINGS ---
+        camera.position.set(5, 5, 5); // Angle matched to your reference image
+        camera.lookAt(0, 0, 0);
+
+        // --- WEBSOCKET ---
+        const socket = new WebSocket(`ws://${window.location.hostname}/ws`);
+        
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            const quat = new THREE.Quaternion(data.y, data.x, data.z, data.w);
+            robot.setRotationFromQuaternion(quat);
+
+            // Update the Black Line (Axis of Rotation)
+            const s = Math.sqrt(1 - data.w * data.w);
+            const pos = rotationVector.geometry.attributes.position.array;
+
+            // Point 0 is always [0, 0, 0]
+            pos[0] = 0; pos[1] = 0; pos[2] = 0;
+
+            if (s > 0.001) {
+                // Point 1 is the Axis vector (normalized) scaled by 3 for visibility
+                pos[3] = (data.y / s) * 3;
+                pos[4] = (data.x / s) * 3;
+                pos[5] = (data.z / s) * 3;
+            } else {
+                // No rotation, hide the line by overlapping points
+                pos[3] = 0; pos[4] = 0; pos[5] = 0;
+            }
+            
+            // Tell Three.js the positions changed
+            rotationVector.geometry.attributes.position.needsUpdate = true;
+        };
+
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+</html>
