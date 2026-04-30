@@ -13,17 +13,13 @@ portTASK_FUNCTION(SensorReader, args) {
     esp_err_t ret;
 
     mpu6050_quaternion_t quaternion;
-    quaternion.x = 0;
-    quaternion.y = 0;
-    quaternion.z = 0;
-    quaternion.w = 1;
 
     wheel_Init();
 
     while(1) {
         wheel_GetEndoderPulses((int *)&data_to_send.pulses_left, (int *)&data_to_send.pulses_right);
 		
-		ret = /*mpu6050_dmp_read_quaternion(I2C_NUM_0, &quaternion);*/ESP_OK;
+		ret = mpu6050_dmp_read_quaternion(I2C_NUM_0, &quaternion);
         if (ret == ESP_OK) {
             data_to_send.quat_x = quaternion.x;
             data_to_send.quat_y = quaternion.y;
@@ -36,7 +32,6 @@ portTASK_FUNCTION(SensorReader, args) {
             
         }
 
-        //vTaskDelay(pdMS_TO_TICKS(50)); // Frequência de amostragem
-        vTaskDelay(pdMS_TO_TICKS(500)); // Frequência de amostragem
+        vTaskDelay(pdMS_TO_TICKS(100)); // Frequência de amostragem
     }
 }
