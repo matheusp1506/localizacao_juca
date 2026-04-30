@@ -12,6 +12,7 @@ Para utilizar o código, basta seguir os seguintes passos:
 #. Preparar o ambiente de desenvolvimento para o ESP32, com o uso da ESP-IDF v5.3.1.
 #. Clonar o repositório do projeto e acessar a pasta da etapa 2, etapa_2, e então acessar a pasta codes/libraries.
 #. Configurar as credenciais de Wi-Fi no arquivo ``wifi_manager.c``.
+#. Utilizando ``idf.py menuconfig`` ir até ``Component config/HTTP Server`` e habilitar WebSocket server support.
 #. Compilar o código utilizando o comando ``idf.py build``.
 #. Realizar o flash do código para a placa utilizando o comando ``idf.py flash``.
 #. Acessar a página de teste utilizando o IP da placa, que pode ser encontrado no monitor serial, e visualizar o modelo 3D orientado conforme o quaternion recebido do sensor.
@@ -31,6 +32,7 @@ Para utilizar o código, basta seguir os seguintes passos:
 #. Clonar o repositório do projeto e acessar a pasta da etapa 2, etapa_2, e então acessar a pasta codes/position.
 #. Configurar as credenciais de Wi-Fi no arquivo ``wifi_manager.c``.
 #. Configurar as credenciais do broker MQTT no arquivo ``mqtt_manager.h``.
+#. Utilizando ``idf.py menuconfig`` ir até ``Component config/HTTP Server`` e habilitar WebSocket server support.
 #. Compilar o código utilizando o comando ``idf.py build``.
 #. Realizar o flash do código para a placa utilizando o comando ``idf.py flash``.
 #. Acessar a página de teste utilizando o IP da placa, que pode ser encontrado no monitor serial, e visualizar o quatenion, além de verificar o envio dos dados para o broker MQTT, utilizando um cliente MQTT para se inscrever nos tópicos configurados e visualizar os dados recebidos, como a estimativa de posição.
