@@ -3,8 +3,8 @@
 static const char *TAG = "WIFI_CONFIG";
 
 // Replace with your local Wi-Fi credentials
-#define WIFI_SSID      "Matheus"
-#define WIFI_PASS      "hmgs3254"
+#define WIFI_SSID      "WIFI_SSID"
+#define WIFI_PASS      "WIFI_PASS"
 #define MAXIMUM_RETRY  5
 
 static int s_retry_num = 0;
