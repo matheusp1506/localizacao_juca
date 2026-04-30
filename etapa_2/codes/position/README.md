@@ -7,7 +7,7 @@ This code allows the user to test the quaternion obtained from the MPU-6050 usin
 
 
 ## How to use example
-Configure the Wi-Fi on wifi_manager.c and MQTT data on mqtt_manager.h, build and flash the code on a Juca robot.
+Configure the Wi-Fi on wifi_manager.c and MQTT data on mqtt_manager.h, using idf.py menuconfig go to Component config/HTTP Server and enable WebSocket server support, build and flash the code on a Juca robot.
 
 ## Folder contents
 
