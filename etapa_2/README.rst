@@ -36,6 +36,7 @@ O uso de bibliotecas novas, além de mudanças na biblioteca do MPU-6050, demand
 
 O teste inicial foi uma modificação do projeto original do robô Juca, com a task do IMU o envio de dados para uma página funcionando na placa para a visualização do quaternion.
 A página de teste utiliza também a biblioteca do JavaScript `Three.js <https://threejs.org/>`_ para a visualização do quaternion, mostrando um modelo 3D simples que se orienta conforme o quaternion, podendo este ser visto na imagem abaixo.
+
 .. figure:: images/ThreeJSQuaternionView.jpeg
    :width: 450px
 
@@ -51,6 +52,7 @@ Testes de Estimativas e MQTT
 
 Para o teste de ambas a estimativa de posição e a comunicação via MQTT, foi construido três tasks diferentes, uma responsável por ler os dados de ambos os sensores, outra responsável por calcular a odometria e a última responsável por enviar os dados para o broker MQTT, e temporariamente para a página de teste, para a visualização do resultado.
 Esta estrutura utiliza queues para desbloquear as tasks seguintes, tendo o formato encontrado no gráfico abaixo.
+
 .. figure:: images/Tasks.png
    :width: 450px
 
