@@ -15,7 +15,7 @@ A etapa 2 começa o desenvolvimento do projeto, com estudo das bibliotecas aplic
 Desenvolvimento
 ***************
 
-Para a construção do projeto, primeiro buscou-se analisar sobre as bibliotecas já utilizadas, como 'bdc-motor' e a versão já disponível para o MPU-6050, encontradas no projeto original do robô Juca, desenvolvido pelo professor Matheus Pinto do Instituto Federal de Santa Catarina. O mesmo código do projeto original foi utilizado para o teste dos sensores, garantindo o funcionamento dos mesmos.
+Para a construção do projeto, primeiro buscou-se analisar sobre as bibliotecas já utilizadas, como 'bdc-motor' e a versão já disponível para o MPU-6050, encontradas no projeto original do robô `Juca <https://github.com/MatheusPinto/Juca>`_, desenvolvido pelo professor `Matheus Pinto <https://github.com/MatheusPinto>`_ do Instituto Federal de Santa Catarina. O mesmo código do projeto original foi utilizado para o teste dos sensores, garantindo o funcionamento dos mesmos.
 
 Além do que já se encontrava presente, funções extras eram necessárias, então vieram acréscimos.
 
@@ -51,6 +51,7 @@ Testes de Estimativas e MQTT
 Referências (links/datasheets/livros)
 *************************************
 
+- `Juca <https://github.com/MatheusPinto/Juca>`_
 - `I2C Device Library <https://github.com/jrowberg/i2cdevlib>`_
 - `ESP-MQTT <https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/protocols/mqtt.html>`_
 - `Espressif: Wi-Fi <https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/network/esp_wifi.html>`_
