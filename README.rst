@@ -15,6 +15,8 @@ Este projeto foi implementado com os seguintes módulos/softwares/hardwares...
 - `ROS 2 <https://www.ros.org/>`_
 - `MQTT Client for ROS 2 <https://wiki.ros.org/mqtt_client>`_
 - `MQTT Broker <https://mosquitto.org/>`_
+- `MPU-6050 <https://product.tdk.com/en/search/sensor/mortion-inertial/imu/info?part_no=MPU-6050>`_
+- `ESP32-S3 <https://www.espressif.com/en/products/socs/esp32-s3>`_
 
 
 Visão geral
@@ -25,7 +27,7 @@ Esse projeto faz parte do desenvolvimento do robô Juca, utilizando os módulos 
 O desenvolvimento foi divido em quatro etapas:
 
 - Etapa 1 (02 de Abril de 2026): Estudos sobre o ROS, comunicação do microcontrolador, odometria e testes de visualização no RViz.
-- Etapa 2 (30 de Abril de 2026): (breve resumo da etapa)
+- Etapa 2 (30 de Abril de 2026): Testes de bibliotecas no ESP32 e construção inicial de estimativa de posição.
 - Etapa 3 (28 de Maio de 2026):  (breve resumo da etapa)
 - Etapa 4 (09 de Julho de 2026): (breve resumo da etapa)
 
