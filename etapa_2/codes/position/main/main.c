@@ -72,7 +72,7 @@ void app_main(void)
         return;
     }
 
-    //mpu6050_complete_init();
+    mpu6050_complete_init();
 
     //ESP_LOGI("main", "ESP_WIFI_MODE_STA");
     //wifi_init_sta();
