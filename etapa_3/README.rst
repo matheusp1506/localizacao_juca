@@ -55,7 +55,7 @@ Como o robô opera em duas dimensões e o Filtro de Kalman já está configurado
    p_cov = [0.0] * 36     # Criação da matriz de covariância
    p_cov[0] = 0.01        # X 
    p_cov[7] = 0.01        # Y 
-   p_cov[35] = 0.01       # Yaw
+   p_cov[35] = 0.01       # Yaw_enc
 
 Matriz da IMU (3x3 linearizada em array de 9 posições)
 ------------------------------------------------------
