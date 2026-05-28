@@ -56,8 +56,6 @@ Resultados Esperados
 * O terminal do ``mqtt_bridge.py`` deve exibir os logs de conexão com o broker e a recepção das mensagens vindas do ``mock_robot.py``.
 * **Validação Visual:** O modelo do robô Juca deve se mover fisicamente na tela do Gazebo acompanhando as atualizações de pose enviadas.
 
----
-
 Conjunto de Testes 2: Filtragem de Odometria com Filtro EKF
 ===========================================================
 
@@ -102,7 +100,6 @@ Resultados Esperados
 * O script ``ekf_to_gazebo.py`` deve mover os dados para o simulador.
 * **Validação Visual:** O robô Juca deve se mover no Gazebo, conforme a resposta do filtro.
 
----
 
 Conjunto de Testes 3: Visualização Gráfica da Trajetória (HTML)
 ===============================================================
