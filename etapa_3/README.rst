@@ -82,6 +82,9 @@ Referências (links/datasheets/livros)
 - `Gazebo <https://gazebosim.org/docs/latest/getstarted/>`_
 - `.urdf <https://wiki.ros.org/urdf>`_
 - `OdometryPublisher <https://gazebosim.org/api/sim/8/classgz_1_1sim_1_1systems_1_1OdometryPublisher.html>`_
+- `Wiki Robot_Localization <https://docs.ros.org/en/noetic/api/robot_localization/html/index.html>`_
+- `Template EKF.yaml <https://github.com/cra-ros-pkg/robot_localization/blob/rolling-devel/params/ekf.yaml>`_
+- `Artigo sobre Matriz de Covariância <https://robotxworkshops.tech/robotics-course-in-berlin/>`_
 
 
 
