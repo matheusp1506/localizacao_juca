@@ -5,7 +5,7 @@ import math
 
 # MQTT Setup
 BROKER = "localhost" # Or your computer's IP
-TOPIC = "robot/odom"
+TOPIC = "juca/imu/quaternion"
 
 client = mqtt.Client()
 client.connect(BROKER, 1883, 60)
