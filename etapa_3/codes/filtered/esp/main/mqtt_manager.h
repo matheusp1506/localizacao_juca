@@ -2,7 +2,7 @@
 #include "esp_event.h"
 #include "mqtt_client.h"
 
-#define MQTT_BROKER_URI      "mqtt://172.16.139.214:1883"
+#define MQTT_BROKER_URI      "mqtt://localhost:1883"
 #define MQTT_QUATERNION_TOPIC "juca/imu/quaternion"
 
 extern esp_mqtt_client_handle_t s_mqtt_client;
