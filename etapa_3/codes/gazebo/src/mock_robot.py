@@ -21,9 +21,11 @@ while True:
     x = 2.0 * math.cos(theta)
     y = 2.0 * math.sin(theta)
     
+    directionTheta = theta+(3.1415)/2
+
     # Simple 2D Quaternion (Z/W) calculation
-    quat_z = math.sin(theta / 2.0)
-    quat_w = math.cos(theta / 2.0)
+    quat_z = math.sin(directionTheta / 2.0)
+    quat_w = math.cos(directionTheta / 2.0)
 
     # Match your odom_final_data_t struct
     data = {

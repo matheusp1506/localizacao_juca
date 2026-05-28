@@ -1,5 +1,7 @@
 import rclpy
 from rclpy.node import Node
+from rclpy.service import ServiceIntrospectionState
+from rclpy.qos import qos_profile_system_default
 from ros_gz_interfaces.srv import SetEntityPose
 from nav_msgs.msg import Odometry
 from sensor_msgs.msg import Imu
@@ -14,6 +16,8 @@ class MqttToGzBridge(Node):
         super().__init__('mqtt_bridge')
         self.srv_name = '/world/empty/set_pose'
         self.client = self.create_client(SetEntityPose, self.srv_name)
+
+        self.client.configure_introspection(self.get_clock(),qos_profile_system_default,ServiceIntrospectionState.CONTENTS)
         
         while not self.client.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('Waiting for service')
