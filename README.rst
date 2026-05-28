@@ -35,54 +35,67 @@ O desenvolvimento foi divido em quatro etapas:
 Configuração
 *************
 
-Projeto ainda em estajo de desenvolvimento, informações abaixo são referentes à um modelo de estrutura para o GitHub e não são pertinentes ao projeto.
+Projeto ainda em estágio de desenvolvimento, informações abaixo estão sugeitas à mudanças.
 
-Projeto foi implementado com o nRF OpenConnect SDK versão 2.4.x.
-Consulte `Configuring your application <https://developer.nordicsemi.com/nRF_Connect_SDK/doc/2.4.2/nrf/getting_started/modifying.html#configure-application>`_ para obter informações sobre como alterar a configuração permanente ou temporariamente.
+O projeto é implementado utilizando o ESP-IDF v5.3.1 em um ESP32-S3 e o ROS 2 Kilted Kaiju em um computador com o Gazebo referente a versão do ROS.
 
-A configuração do perfil do dispositivo é realizada no arquivo de configuração `prj.conf <prj.conf>`_:
+Para o uso correto dos códigos apresentados, é importante a mudança em ``mqtt_manager.h`` e ``wifi_manager.c`` dos dados para os IPs necessários e rede utilizada, assim como em ``mqtt_bridge.py`` e versões variantes, como a com EKF. Modificando os seguintes:
 
-- End-Device:
+- mqtt_manager:
 
 .. code:: C 
 
   (...)
-  CONFIG_ZIGBEE_ROLE_END_DEVICE=y  
-  # CONFIG_ZIGBEE_ROLE_ROUTER=y
-  // Versão do firmware
-  CONFIG_MCUBOOT_IMAGE_VERSION="0.0.3"
-  CONFIG_ZIGBEE_FOTA_COMMENT="ruido_zigbee_endpoint"
-  # CONFIG_ZIGBEE_FOTA_COMMENT="ruido_zigbee_router"
+  #define MQTT_BROKER_URI      "mqtt://localhost:1883"
+  (...)
 
+- wifi_manager:
+
+.. code:: C 
+
+  (...)
+  #define WIFI_SSID      "SSID"
+  #define WIFI_PASS      "PASS"
+  (...)
+
+- mqtt_bridge:
+
+.. code:: python
+
+  (...)
+  self.mqtt_client.connect("localhost", 1883)
+  (...)
 
 Interface do usuário
 ********************
 
-LED 1:
-  Pisca enquanto o filtro estiver ativo.
+Simulação do Gazebo:
+  Exibe o movimento atual recebido.
 
-Botão 1:
-  Ativa o módulo xyz.
+Logs:
+  Apresenta os dados recebidos.
+
+Console:
+  Permite a visualização instantânea de dados recebidos via MQTT.
+
+Página por meio de ``visualize.py``:
+   Permite a visualização de caminhos anteriores.
 
 
 Compilando e executando
 ***********************
 
-Colocar detalhes na construção da applicação. Exemplo: 
+Para a compilação utiliza-se o ESP-IDF v5.3.1 com o target de ESP32-S3, o código é então carregado ao robô. Para as partes no computador certifique-se de utilizar o Python 3 e baixar as bibliotecas apresentadas para cada script (como ``paho-mqtt``, para as pontes e ``plotly``, para a visualização de logs), além de ter o CLI utilizado já com o ROS 2 habilitado, utilizando sua versão Kilted Kaiju.
 
-Para compilar o projeto com o Visual Studio Code, siga as etapas listadas na página `How to build an application <https://nrfconnect.github.io/vscode-nrf-connect/get_started/build_app_ncs.html>`_  na documentação da extensão nRF Connect for VS Code.  `Building and programming an application  <https://developer.nordicsemi.com/nRF_Connect_SDK/doc/2.4.2/nrf/getting_started/programming.html#gs-programming>`_ para outros cenários de construção e programação e `Testing and debugging an application <https://developer.nordicsemi.com/nRF_Connect_SDK/doc/2.4.2/nrf/getting_started/testing.html#gs-testing>`_ para obter informações gerais sobre testes e depuração no nRF Connect SDK.
-
-Recomenda-se o uso do J-Link para gravação e/ou depuração.
+Em cada etapa, há um arquivo ``Tests.rst`` que apresenta como instalar e testar os componentes necessários de cada conjunto de scripts.
 
 Testando
 ========
 
 Após programar o microcontrolador, conclua as etapas a seguir para testá-lo:
 
-1. ...
-
-Montagem
-********
-
-Breve descrição da montagem final do projeto.
+1. Verifique se o robô se move após 5 segundos ligado, com a energia da bateria sendo utilizada.
+2. Verifique por meio da ponte o recebimento de dados via MQTT, ou se inscrevendo no tópico de maneira externa.
+3. Inscreva-se nos tópicos do ROS 2 para a função desejada e observe o recebimento de dados.
+4. Observe por meio do Gazebo o movimento do robô ou a mudança de valores em seu componente Pose.
 
