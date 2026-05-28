@@ -28,7 +28,7 @@ class MqttToGzBridge(Node):
         self.mqtt_client.on_message = self.on_message
         
         self.get_logger().info("Connecting to MQTT Broker...")
-        self.mqtt_client.connect("172.16.139.214", 1883)
+        self.mqtt_client.connect("localhost", 1883)
         self.mqtt_client.subscribe("juca/imu/quaternion")
         self.mqtt_client.loop_start()
 
