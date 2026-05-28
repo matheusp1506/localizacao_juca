@@ -24,6 +24,9 @@ Considerando o teste de visualização realizado no RViz durante a etapa 1, o fo
 
 Para o uso do Gazebo, foi feito um script Python que inicializa o mesmo, já preparando o 'robô' que aparece no ambiente virtual, este que é definido por um arquivo `.urdf <https://wiki.ros.org/urdf>`_ contendo sua aparência, dados de colisão e o plugin utilizado para permitir a modificação de sua posição e ângulo conforme a mudança detectada pelos sensores, `OdometryPublisher <https://gazebosim.org/api/sim/8/classgz_1_1sim_1_1systems_1_1OdometryPublisher.html>`_.
 
+.. figure:: images/RobotGazebo.png
+   :width: 450px
+
 Filtro de Kalman Estendido
 =======================
 
@@ -39,7 +42,10 @@ Implementação das Matrizes de Covariância no `ros_bridge.py`
 
 No Filtro de Kalman, as diagonais das matrizes de covariância exigem a entrada da Variância ($\sigma^2$), que corresponde ao quadrado do desvio padrão ($\sigma$) medido na unidade correspondente de cada eixo (seja em metros para as posições lineares $X$ e $Y$, ou em radianos para as orientações angulares).
 
-Matriz de Odometria (6x6 linearizada em array de 36 posições)Seguindo o padrão nav_msgs/msg/Odometry. 
+Matriz de Odometria (6x6 linearizada em array de 36 posições)
+-------------------------------------------------------------
+
+Construída seguindo o padrão nav_msgs/msg/Odometry. 
 
 Como o robô opera em duas dimensões e o Filtro de Kalman já está configurado para desconsiderar os eixos tridimensionais no arquivo de configuração, mantemos as posições de Z, Roll e Pitch zeradas. Para as posições 0 ($X$), 7 ($Y$) e 35 ($Yaw$), realizamos os testes práticos para a obtenção de suas respectivas variâncias com base no comportamento físico das rodas:
 
@@ -51,7 +57,10 @@ Como o robô opera em duas dimensões e o Filtro de Kalman já está configurado
    p_cov[7] = 0.01        # Y 
    p_cov[35] = 0.01       # Yaw
 
-Matriz da IMU (3x3 linearizada em array de 9 posições)Seguindo o padrão `sensor_msgs/msg/Imu`. 
+Matriz da IMU (3x3 linearizada em array de 9 posições)
+------------------------------------------------------
+
+Construída seguindo o padrão `sensor_msgs/msg/Imu`. 
 
 Como o robô opera em duas dimensões, injetamos um ruído artificial (`99999.0`) em Roll e Pitch para forçar o filtro a descartá-los, já a posição 8 que se refere ao Yaw é necessário realizar testes para cálculo da sua variância:
 
