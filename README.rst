@@ -18,6 +18,7 @@ Este projeto foi implementado com os seguintes módulos/softwares/hardwares...
 - `MPU-6050 <https://product.tdk.com/en/search/sensor/mortion-inertial/imu/info?part_no=MPU-6050>`_
 - `ESP32-S3 <https://www.espressif.com/en/products/socs/esp32-s3>`_
 - `Gazebo <https://gazebosim.org/docs/latest/getstarted/>`_
+- `Robô Juca <https://github.com/MatheusPinto/Juca>`_
 
 
 Visão geral
@@ -29,13 +30,11 @@ O desenvolvimento foi divido em quatro etapas:
 
 - Etapa 1 (02 de Abril de 2026): Estudos sobre o ROS, comunicação do microcontrolador, odometria e testes de visualização no RViz.
 - Etapa 2 (30 de Abril de 2026): Testes de bibliotecas no ESP32 e construção inicial de estimativa de posição.
-- Etapa 3 (28 de Maio de 2026):  Continuação da estimativa de posição e visualização no Gazebo
-- Etapa 4 (09 de Julho de 2026): (breve resumo da etapa)
+- Etapa 3 (28 de Maio de 2026):  Continuação da estimativa de posição e visualização no Gazebo.
+- Etapa 4 (09 de Julho de 2026): Testes relacionados aos valores de posição e visualização de tragetória.
 
 Configuração
 *************
-
-Projeto ainda em estágio de desenvolvimento, informações abaixo estão sugeitas à mudanças.
 
 O projeto é implementado utilizando o ESP-IDF v5.3.1 em um ESP32-S3 e o ROS 2 Kilted Kaiju em um computador com o Gazebo referente a versão do ROS.
 
@@ -70,16 +69,16 @@ Interface do usuário
 ********************
 
 Simulação do Gazebo:
-  Exibe o movimento atual recebido.
+  Exibe o movimento atual recebido, por meio da movimentação do 'robô' no ambiente virtual.
 
 Logs:
-  Apresenta os dados recebidos.
+  Apresenta os dados que foram recebidos, permitindo a utilização deles para uma noção de seus movimentos anteriores.
 
 Console:
-  Permite a visualização instantânea de dados recebidos via MQTT.
+  Permite a visualização instantânea de dados recebidos via MQTT e visualização de dados resultantes do filtro.
 
-Página por meio de ``visualize.py``:
-   Permite a visualização de caminhos anteriores.
+Página por meio de ``log_visualize.py``:
+   Permite a visualização de caminhos anteriores, selecionando um log específico para em uma página poder ver com variação da quantidade de pontos.
 
 
 Compilando e executando
