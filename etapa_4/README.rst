@@ -9,7 +9,7 @@ Etapa 4
 Visão geral
 ***********
 
-A etapa 1 ...
+A etapa 4 apresenta os testes desenvolvidos da localização, verificando os erros repetindo uma mesma sequência de movimentos diversas vezes, e a modificação da visualização de tragetória, utilizando agora os logs gerados após o filtro e permitindo fácil escolha do log a ser utilizado.
 
 
 Desenvolvimento
