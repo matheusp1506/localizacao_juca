@@ -15,7 +15,7 @@ A etapa 4 apresenta os testes desenvolvidos da localização, verificando os err
 Desenvolvimento
 ***************
 
-Apresentar o desenvolvimento da etapa contendo detalhes de implementação (se houver) de hardware e software. Adicionar pesqusisas realizadas bem como testes realizados.
+Com os dados transmitidos pelo robô chegando ao computador e sendo vistos no Gazebo, buscou-se aproximar um pouco mais os valores obtidos dos reais, encontrando os erros e preparando para futuros trabalhos possam aprimorar as coordenadas. Um método definido se mostra necessário, para isto foi seguido o artigo
 
 
 Testes
