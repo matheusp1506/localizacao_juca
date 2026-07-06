@@ -38,5 +38,6 @@ Referências (links/datasheets/livros)
 *************************************
 
 - `nRF Connect SDK <https://developer.nordicsemi.com/nRF_Connect_SDK/doc/2.4.2/nrf/getting_started/modifying.html#configure-application>`_
+- `Artigo de Referência "Initial covariance estimation and analysis for EKF localization using route-based experimental data" <https://www.sciencedirect.com/science/article/pii/S2773186326000496?fr=RR-2&ref=pdf_download&rr=a171fd8e0e817df3>`_
 
 
