@@ -23,7 +23,7 @@ Script para visualização de trajetória
 Além da visualização em tempo real no Gazebo, criamos um script em Python que utiliza os logs gerados pelo ROS para comparar os dados brutos de estimativa com os resultados do Filtro de Kalman.
 
 Testes e Calibração do Filtro de Kalman
-======
+***************************
 
 Para os testes de localização, focamos na execução de rotas quadradas repetitivas, o que permitiu avaliar o acúmulo de erro tanto em linha reta quanto em curvas de 90 graus. A montagem das matrizes de covariância seguiu rigorosamente o método de cálculo do artigo de referência, que ensina a mapear estatisticamente as incertezas para que o filtro funcione. De forma explícita, o cálculo da variância foi feito coletando um conjunto de $N$ amostras consecutivas do sensor e aplicando a fórmula matemática clássica da variância, onde subtraímos cada leitura individual da média aritmética de todas as leituras, elevamos o resultado ao quadrado para eliminar sinais negativos, somamos todas essas diferenças quadráticas e dividimos o total pelo número de amostras menos um (N-1).
 
