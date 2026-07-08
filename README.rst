@@ -19,6 +19,8 @@ Este projeto foi implementado com os seguintes módulos/softwares/hardwares...
 - `ESP32-S3 <https://www.espressif.com/en/products/socs/esp32-s3>`_
 - `Gazebo <https://gazebosim.org/docs/latest/getstarted/>`_
 - `Robô Juca <https://github.com/MatheusPinto/Juca>`_
+- `ESP-IDF <https://developer.espressif.com/tags/esp-idf/>`_
+- `Mosquitto <https://mosquitto.org/download/>`_
 
 
 Visão geral
@@ -33,12 +35,31 @@ O desenvolvimento foi divido em quatro etapas:
 - Etapa 3 (28 de Maio de 2026):  Continuação da estimativa de posição e visualização no Gazebo.
 - Etapa 4 (09 de Julho de 2026): Testes relacionados aos valores de posição e visualização de tragetória.
 
+Instalação
+**********
+
+Para a construção do projeto, utilize o ESP-IDF v5.3.1, este pode ser instalado por meio da UI ESP-IDF ou por CLI, para mais detalhes consulte a `documentação do ESP-IDF <https://developer.espressif.com/tags/esp-idf/>`_.
+
+A versão utilizada do sistema operacional, para o desenvolvimento do projeto, foi Ubuntu 24.04.4 LTS, utilizada por meio do WSL 2.
+
+Para a versão do ROS 2, utilize a Kilted Kaiju. Para mais detalhes consulte a `documentação do ROS 2 <https://docs.ros.org/en/kilted/Installation.html>`_.
+
+Instale o broker MQTT, por exemplo, o `Mosquitto <https://mosquitto.org/download/>`_.
+
+Instale as dependências do projeto, entre elas: `paho-mqtt <https://pypi.org/project/paho-mqtt/>`_.
+
+Para o Gazebo, utilize a versão recomendada para o ROS 2 Kilted Kaiju, encontrado no processo de `instalação do Gazebo <https://gazebosim.org/docs/latest/ros_installation/>`_.
+
+Crie uma pasta para o projeto, colocando dentro dela o arquivo ``juca.urdf`` e uma pasta ``src``, para os scripts do ROS. A pasta para o firmware do ESP32 pode ser outra de sua preferência.
+
+Na pasta ``src``, coloque os arquivos responsáveis por cada parte do projeto, ``ekf.yaml``, ``ekf_to_gazebo.py``, ``juca_sim.launch.py``, ``mqtt_bridge_ekf.py``, ``log_visualize.py``. Caso deseje realizar um teste sem o robô, utilize o código ``mock_robot.py`` em conjunto com os outros scripts. 
+
 Configuração
 *************
 
 O projeto é implementado utilizando o ESP-IDF v5.3.1 em um ESP32-S3 e o ROS 2 Kilted Kaiju em um computador com o Gazebo referente a versão do ROS.
 
-Para o uso correto dos códigos apresentados, é importante a mudança em ``mqtt_manager.h`` e ``wifi_manager.c`` dos dados para os IPs necessários e rede utilizada, assim como em ``mqtt_bridge.py`` e versões variantes, como a com EKF. Modificando os seguintes:
+Para o uso correto dos códigos apresentados, é importante a mudança em ``mqtt_manager.h`` e ``wifi_manager.c`` dos dados para os IPs necessários e rede utilizada, assim como em ``mqtt_bridge_ekf.py``, além destes no código ``test_tasks/wheel_task.c`` colocar o movimento desejado do robô. Modificando os seguintes:
 
 - mqtt_manager:
 
@@ -57,7 +78,7 @@ Para o uso correto dos códigos apresentados, é importante a mudança em ``mqtt
   #define WIFI_PASS      "PASS"
   (...)
 
-- mqtt_bridge:
+- mqtt_bridge_ekf.py:
 
 .. code:: python
 
@@ -69,7 +90,7 @@ Interface do usuário
 ********************
 
 Simulação do Gazebo:
-  Exibe o movimento atual recebido, por meio da movimentação do 'robô' no ambiente virtual.
+  Exibe a representação do robô no ambiente virtual e seu movimento, baseado nos dados enviados pela movimentação do robô.
 
 Logs:
   Apresenta os dados que foram recebidos, permitindo a utilização deles para uma noção de seus movimentos anteriores.
@@ -84,9 +105,9 @@ Página por meio de ``log_visualize.py``:
 Compilando e executando
 ***********************
 
-Para a compilação utiliza-se o ESP-IDF v5.3.1 com o target de ESP32-S3, o código é então carregado ao robô. Para as partes no computador certifique-se de utilizar o Python 3 e baixar as bibliotecas apresentadas para cada script (como ``paho-mqtt``, para as pontes e ``plotly``, para a visualização de logs), além de ter o CLI utilizado já com o ROS 2 habilitado, utilizando sua versão Kilted Kaiju.
+Para a compilação utiliza-se o ESP-IDF v5.3.1 com o target de ESP32-S3, o código é então carregado ao robô. Para as partes no computador certifique-se de utilizar o Python 3 e baixar as bibliotecas apresentadas para cada script (como ``paho-mqtt``, para as pontes), além de ter o CLI utilizado já com o ROS 2 habilitado, utilizando sua versão Kilted Kaiju.
 
-Em cada etapa, há um arquivo ``Tests.rst`` que apresenta como instalar e testar os componentes necessários de cada conjunto de scripts.
+Nas três primeiras etapas do projeto, foi desenvolvido um arquivo ``Tests.rst`` que apresenta como instalar e testar os componentes necessários de cada conjunto de scripts. Para a quarta etapa não foi elaborado um arquivo deste tipo, como representa o estado final do projeto.
 
 Testando
 ========
