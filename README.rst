@@ -105,9 +105,39 @@ Página por meio de ``log_visualize.py``:
 Compilando e executando
 ***********************
 
-Para a compilação utiliza-se o ESP-IDF v5.3.1 com o target de ESP32-S3, o código é então carregado ao robô. Para as partes no computador certifique-se de utilizar o Python 3 e baixar as bibliotecas apresentadas para cada script (como ``paho-mqtt``, para as pontes), além de ter o CLI utilizado já com o ROS 2 habilitado, utilizando sua versão Kilted Kaiju.
+Para a compilação utiliza-se o ESP-IDF v5.3.1 com o target de ESP32-S3, o código é então carregado ao robô. Para as partes no computador certifique-se de utilizar o Python 3 e baixar as bibliotecas apresentadas para cada script (como ``paho-mqtt``, para as pontes), além de ter o CLI utilizado já com o ROS 2 habilitado, utilizando sua versão Kilted Kaiju, acima, em Instalação, se encontra o procedimento.
 
 Nas três primeiras etapas do projeto, foi desenvolvido um arquivo ``Tests.rst`` que apresenta como instalar e testar os componentes necessários de cada conjunto de scripts. Para a quarta etapa não foi elaborado um arquivo deste tipo, como representa o estado final do projeto.
+
+Para o uso do código completo, segue-se:
+
+1.  Mantenha o broker MQTT ativo e o simulador do Gazebo rodando (via ``juca_sim.launch.py``).
+2.  Carregue o código na pasta `ESP <etapa_4/codes/esp>`_ no robô para obter os dados.
+3.  Inicie o script responsável por receber os dados dos sensores via MQTT e aplicar o algoritmo de filtragem EKF:
+    
+    .. code-block:: bash
+
+       python3 <YOUR_PATH>/src/mqtt_bridge_ekf.py
+
+4.  Execute o nó ou script encarregado de pegar a saída tratada pelo filtro EKF e aplicá-la ao robô dentro do simulador:
+    
+    .. code-block:: bash
+
+       python3 <YOUR_PATH>/src/ekf_to_gazebo.py
+
+5.  Utilize a ferramenta de *parameter bridge* do ROS 2 para mapear o comando de alteração de pose (``set pose``):
+
+    .. code-block:: bash
+
+      ros2 run ros_gz_bridge parameter_bridge /world/empty/set_pose@ros_gz_interfaces/srv/SetEntityPose
+
+6.  Execute o **robot_localization** usando o filtro definido:
+
+    .. code-block:: bash
+
+      ros2 run robot_localization ekf_node --ros-args --params-file <YOUR_PATH>/src/ekf.yaml
+
+Caso deseje-se visualizar uma tragetória, só é nescessário rodar o script ``log_visualize.py`` e selecionar o log desejado. Caso o sistema utilizado não possua nenhum navegador reconhecido, é possível encontrar na mesma pasta do script o html gerado para a tragetória.
 
 Testando
 ========
